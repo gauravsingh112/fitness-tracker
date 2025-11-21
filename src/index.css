@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  /* Default Dark Mode */
+  --bg-primary: #000000;
+  --bg-surface: #121212;
+  --text-primary: #ffffff;
+  --text-muted: #9ca3af;
+  --border-color: #27272a;
+
+  --brand-primary: #4ade80;
+  --brand-secondary: #60a5fa;
+}
+
+:root.light {
+  /* Light Mode Overrides */
+  --bg-primary: #f8fafc;
+  /* Slate 50 */
+  --bg-surface: #ffffff;
+  --text-primary: #0f172a;
+  /* Slate 900 */
+  --text-muted: #64748b;
+  /* Slate 500 */
+  --border-color: #e2e8f0;
+  /* Slate 200 */
+
+  --brand-primary: #16a34a;
+  /* Green 600 (Darker for light mode) */
+  --brand-secondary: #2563eb;
+  /* Blue 600 */
+}
+
+@theme {
+  --color-background: var(--bg-primary);
+  --color-surface: var(--bg-surface);
+  --color-primary: var(--brand-primary);
+  --color-secondary: var(--brand-secondary);
+  --color-text: var(--text-primary);
+  --color-muted: var(--text-muted);
+  --color-border: var(--border-color);
+
+  --font-sans: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@utility glass {
+  @apply bg-surface/50 backdrop-blur-md border border-white/5;
+}
+
+@utility card-hover {
+  @apply transition-all duration-300 hover:bg-surface hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/10;
+}
