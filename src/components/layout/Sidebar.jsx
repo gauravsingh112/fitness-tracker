@@ -1,15 +1,20 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, CheckSquare, BookOpen, TrendingUp, Dumbbell } from 'lucide-react';
+import { LayoutDashboard, CheckSquare, BookOpen, TrendingUp, Dumbbell, FileBarChart, LogOut } from 'lucide-react';
 import { clsx } from 'clsx';
 import ThemeToggle from '../ui/ThemeToggle';
+import { useAuth } from '../../context/AuthContext';
+import { motion } from 'framer-motion';
 
 const Sidebar = ({ onItemClick }) => {
+  const { user, logout } = useAuth();
+
   const navItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
     { icon: CheckSquare, label: 'Daily Tracker', path: '/tracker' },
     { icon: BookOpen, label: 'My Plan', path: '/plan' },
     { icon: TrendingUp, label: 'Progress', path: '/progress' },
+    { icon: FileBarChart, label: 'Reports', path: '/reports' },
   ];
 
   return (
@@ -44,7 +49,35 @@ const Sidebar = ({ onItemClick }) => {
         ))}
       </nav>
 
-      <div className="mt-auto space-y-4">
+      <div className="mt-auto space-y-6">
+        {/* User Profile Section */}
+        {user && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="p-4 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <img
+                src={user.picture}
+                alt={user.name}
+                className="w-10 h-10 rounded-full border-2 border-primary"
+              />
+              <div className="overflow-hidden">
+                <p className="text-sm font-bold text-text truncate">{user.name}</p>
+                <p className="text-xs text-muted truncate">{user.email}</p>
+              </div>
+            </div>
+            <button
+              onClick={logout}
+              className="w-full flex items-center justify-center gap-2 py-2 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-colors text-xs font-medium"
+            >
+              <LogOut className="w-3 h-3" />
+              Logout
+            </button>
+          </motion.div>
+        )}
+
         <div className="flex items-center justify-between px-2">
           <span className="text-xs font-medium text-muted">Theme</span>
           <ThemeToggle />

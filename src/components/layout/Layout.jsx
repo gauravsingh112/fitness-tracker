@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const Layout = () => {
+const Layout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -53,7 +53,7 @@ const Layout = () => {
 
       <main className="flex-1 md:ml-64 w-full p-4 md:p-8 pt-20 md:pt-8 overflow-y-auto min-h-screen">
         <div className="max-w-5xl mx-auto pb-20">
-          <Outlet />
+          {children || <Outlet />}
         </div>
       </main>
     </div>

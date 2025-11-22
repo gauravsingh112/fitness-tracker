@@ -1,99 +1,81 @@
-# 🏋️‍♂️ FitTrack - Modern Fitness Transformation App
+# FitTrack - Intelligent Fitness Companion (v2.0)
 
-![FitTrack Banner](https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop)
+![FitTrack Banner](https://img.shields.io/badge/FitTrack-v2.0-22c55e?style=for-the-badge&logo=google-fit&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-> A premium, responsive, and interactive fitness tracking application designed to help you crush your transformation goals. Built with modern web technologies for a seamless user experience.
+FitTrack is a modern, full-stack fitness tracking application designed to help you monitor your workouts, nutrition, and daily habits with precision and style. Version 2.0 introduces secure Google Authentication, a revamped UI, and detailed analytics.
 
-## ✨ Features
+## 🚀 New in Version 2.0
+*   **🔐 Secure Google Login**: One-click sign-in using your Google account.
+*   **✨ Animated Onboarding**: A beautiful 3-step introduction to the app's features.
+*   **👤 User Profiles**: Personalized experience with profile picture and name display.
+*   **📊 Enhanced Reporting**: CSV exports, daily scoring (0-10), and detailed weight tracking.
+*   **🎨 Modern UI**: Glassmorphism effects, smooth transitions, and a responsive design.
 
--   **📊 Interactive Dashboard**: Get a bird's-eye view of your progress with real-time stats, daily streaks, and workout previews.
--   **✅ Daily Tracker**: A gamified checklist for your habits, meals, and workouts. Track your wins every single day.
--   **🌗 Dark/Light Mode**: A stunning UI that adapts to your preference. Switch between a sleek "Cyber Dark" mode and a clean "Day" mode with a single click.
--   **📅 Smart Schedule**: Automatically displays your daily workout focus (Push/Pull/Legs) based on the day of the week.
--   **📈 Progress Analytics**: Visualize your weight loss journey with interactive charts and goal tracking.
--   **📱 Fully Responsive**: Optimized for all devices—from large desktop monitors to mobile phones. Includes a smooth mobile navigation drawer.
+## 📸 Screenshots
+
+### Modern Login Screen
+![Login Screen](./assets/login_screenshot.png)
+*Secure and stylish entry point with animated background effects.*
+
+### Interactive Dashboard
+*Real-time tracking of your daily goals, calories, and workout progress.*
 
 ## 🛠️ Tech Stack
+*   **Frontend**: React (Vite), Tailwind CSS, Framer Motion, Lucide React
+*   **Backend**: Node.js, Express, MongoDB, Mongoose
+*   **Auth**: Google OAuth 2.0, JWT (JSON Web Tokens)
+*   **Tools**: Axios, Recharts, React Router
 
--   **Framework**: [React](https://react.dev/) (v19) with [Vite](https://vitejs.dev/) for lightning-fast performance.
--   **Styling**: [Tailwind CSS](https://tailwindcss.com/) (v4) for a utility-first, custom design system.
--   **Animations**: [Framer Motion](https://www.framer.com/motion/) for buttery-smooth transitions and interactions.
--   **Icons**: [Lucide React](https://lucide.dev/) for beautiful, consistent iconography.
--   **State Management**: React Context API + LocalStorage for persistence (no backend required!).
--   **Routing**: React Router DOM (v7).
-
-## 🚀 Getting Started
-
-Follow these steps to run the project locally on your machine.
-
-### Prerequisites
-
--   Node.js (v18 or higher)
--   npm (v9 or higher)
-
-### Installation
+## 📦 Installation
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/fitness-tracker.git
+    git clone https://github.com/gauravsingh112/fitness-tracker.git
     cd fitness-tracker
     ```
 
-2.  **Install dependencies**
+2.  **Install Dependencies**
     ```bash
+    # Frontend
+    npm install
+
+    # Backend
+    cd backend
     npm install
     ```
 
-3.  **Start the development server**
+3.  **Environment Setup**
+    Create a `.env` file in the `backend` directory:
+    ```env
+    PORT=5000
+    MONGO_URI=your_mongodb_uri
+    JWT_SECRET=your_jwt_secret
+    GOOGLE_CLIENT_ID=your_google_client_id
+    ```
+    Create a `.env` file in the root directory:
+    ```env
+    VITE_GOOGLE_CLIENT_ID=your_google_client_id
+    ```
+
+4.  **Run the App**
     ```bash
+    # Terminal 1 (Backend)
+    cd backend
+    npm start
+
+    # Terminal 2 (Frontend)
     npm run dev
     ```
 
-4.  **Open in Browser**
-    Visit `http://localhost:5173` to see the app in action!
-
-## 📂 Project Structure
-
-```
-fitness-tracker/
-├── src/
-│   ├── components/      # Reusable UI components
-│   │   ├── layout/      # Sidebar, Layout wrappers
-│   │   └── ui/          # ThemeToggle, StatCard, etc.
-│   ├── context/         # Global State (StoreContext)
-│   ├── data/            # Static Data (Master Plan, Schedule)
-│   ├── pages/           # Main Application Pages
-│   ├── App.jsx          # Main Router Setup
-│   ├── main.jsx         # Entry Point
-│   └── index.css        # Global Styles & Tailwind Config
-├── public/              # Static Assets
-└── package.json         # Dependencies & Scripts
-```
-
-## 🎨 Customization
-
-### Changing the Plan
-You can easily update the diet, workout schedule, or habits by editing the `src/data/masterPlan.js` file. The app will automatically reflect your changes.
-
-### Theming
-The app uses CSS variables for theming. You can adjust the colors in `src/index.css` under the `:root` and `:root.light` selectors.
+## 🔒 Security Note
+This repository does **not** contain any API keys or database credentials. All sensitive information is managed via environment variables.
 
 ## 🤝 Contributing
-
-Contributions are welcome! Feel free to open an issue or submit a pull request if you have ideas for improvements.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
-
-<p align="center">
-  Built with ❤️ by Gaurav Singh
-</p>
+*Built with ❤️ by Gaurav Singh*

@@ -1,26 +1,76 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { StoreProvider } from './context/StoreContext';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
 import DailyTracker from './pages/DailyTracker';
-import MyPlan from './pages/MyPlan';
 import Progress from './pages/Progress';
+import MyPlan from './pages/MyPlan';
+import Reports from './pages/Reports';
+import Login from './pages/Login';
+import Onboarding from './pages/Onboarding';
+import { StoreProvider } from './context/StoreContext';
+
+const PrivateRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-background text-primary">Loading...</div>;
+  return user ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
-    <StoreProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="tracker" element={<DailyTracker />} />
-            <Route path="plan" element={<MyPlan />} />
-            <Route path="progress" element={<Progress />} />
-          </Route>
-        </Routes>
-      </Router>
-    </StoreProvider>
+    <GoogleOAuthProvider clientId="57394121810-gaglf27mtoh19s0vkmb4srggaflcn3tu.apps.googleusercontent.com">
+      <AuthProvider>
+        <StoreProvider>
+          <Router>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/onboarding" element={
+                <PrivateRoute>
+                  <Onboarding />
+                </PrivateRoute>
+              } />
+              <Route path="/" element={
+                <PrivateRoute>
+                  <Layout>
+                    <Dashboard />
+                  </Layout>
+                </PrivateRoute>
+              } />
+              <Route path="/tracker" element={
+                <PrivateRoute>
+                  <Layout>
+                    <DailyTracker />
+                  </Layout>
+                </PrivateRoute>
+              } />
+              <Route path="/progress" element={
+                <PrivateRoute>
+                  <Layout>
+                    <Progress />
+                  </Layout>
+                </PrivateRoute>
+              } />
+              <Route path="/plan" element={
+                <PrivateRoute>
+                  <Layout>
+                    <MyPlan />
+                  </Layout>
+                </PrivateRoute>
+              } />
+              <Route path="/reports" element={
+                <PrivateRoute>
+                  <Layout>
+                    <Reports />
+                  </Layout>
+                </PrivateRoute>
+              } />
+            </Routes>
+          </Router>
+        </StoreProvider>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 
