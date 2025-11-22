@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}
               className="fixed top-0 left-0 bottom-0 w-64 z-50 md:hidden bg-surface border-r border-white/10"
             >
               <Sidebar onItemClick={() => setIsMobileMenuOpen(false)} />
