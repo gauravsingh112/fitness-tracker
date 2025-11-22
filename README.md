@@ -15,6 +15,14 @@ FitTrack is a modern, full-stack fitness tracking application designed to help y
 *   **📊 Enhanced Reporting**: CSV exports, daily scoring (0-10), and detailed weight tracking.
 *   **🎨 Modern UI**: Glassmorphism effects, smooth transitions, and a responsive design.
 
+## 🎥 Demo Video
+
+Watch the complete application walkthrough showcasing all features:
+
+![FitTrack Demo](./assets/demo.webp)
+
+*Demo includes: Login flow, onboarding experience, dashboard overview, daily tracker, progress tracking, workout plans, and detailed reports.*
+
 ## 📸 Screenshots
 
 ### Modern Login Screen
