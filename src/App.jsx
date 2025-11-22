@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
@@ -20,57 +19,55 @@ const PrivateRoute = ({ children }) => {
 
 function App() {
   return (
-    <GoogleOAuthProvider clientId="57394121810-gaglf27mtoh19s0vkmb4srggaflcn3tu.apps.googleusercontent.com">
-      <AuthProvider>
-        <StoreProvider>
-          <Router>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/onboarding" element={
-                <PrivateRoute>
-                  <Onboarding />
-                </PrivateRoute>
-              } />
-              <Route path="/" element={
-                <PrivateRoute>
-                  <Layout>
-                    <Dashboard />
-                  </Layout>
-                </PrivateRoute>
-              } />
-              <Route path="/tracker" element={
-                <PrivateRoute>
-                  <Layout>
-                    <DailyTracker />
-                  </Layout>
-                </PrivateRoute>
-              } />
-              <Route path="/progress" element={
-                <PrivateRoute>
-                  <Layout>
-                    <Progress />
-                  </Layout>
-                </PrivateRoute>
-              } />
-              <Route path="/plan" element={
-                <PrivateRoute>
-                  <Layout>
-                    <MyPlan />
-                  </Layout>
-                </PrivateRoute>
-              } />
-              <Route path="/reports" element={
-                <PrivateRoute>
-                  <Layout>
-                    <Reports />
-                  </Layout>
-                </PrivateRoute>
-              } />
-            </Routes>
-          </Router>
-        </StoreProvider>
-      </AuthProvider>
-    </GoogleOAuthProvider>
+    <AuthProvider>
+      <StoreProvider>
+        <Router>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/onboarding" element={
+              <PrivateRoute>
+                <Onboarding />
+              </PrivateRoute>
+            } />
+            <Route path="/" element={
+              <PrivateRoute>
+                <Layout>
+                  <Dashboard />
+                </Layout>
+              </PrivateRoute>
+            } />
+            <Route path="/tracker" element={
+              <PrivateRoute>
+                <Layout>
+                  <DailyTracker />
+                </Layout>
+              </PrivateRoute>
+            } />
+            <Route path="/progress" element={
+              <PrivateRoute>
+                <Layout>
+                  <Progress />
+                </Layout>
+              </PrivateRoute>
+            } />
+            <Route path="/plan" element={
+              <PrivateRoute>
+                <Layout>
+                  <MyPlan />
+                </Layout>
+              </PrivateRoute>
+            } />
+            <Route path="/reports" element={
+              <PrivateRoute>
+                <Layout>
+                  <Reports />
+                </Layout>
+              </PrivateRoute>
+            } />
+          </Routes>
+        </Router>
+      </StoreProvider>
+    </AuthProvider>
   );
 }
 

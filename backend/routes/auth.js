@@ -1,42 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const { OAuth2Client } = require('google-auth-library');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
-
-router.post('/google', async (req, res) => {
-    const { token } = req.body;
+// Mock Login Endpoint
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
     try {
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: process.env.GOOGLE_CLIENT_ID
-        });
-
-        const { name, email, picture, sub: googleId } = ticket.getPayload();
-
         let user = await User.findOne({ email });
 
         if (!user) {
+            // Create new mock user if not exists
             user = new User({
-                name,
+                name: email.split('@')[0], // Use part of email as name
                 email,
-                picture,
-                googleId
+                picture: `https://ui-avatars.com/api/?name=${email.split('@')[0]}&background=random`, // Generate avatar
+                googleId: `mock_${Date.now()}`, // Dummy ID
+                lastLogin: Date.now()
             });
             await user.save();
         } else {
-            // Update user info if changed
-            user.name = name;
-            user.picture = picture;
-            user.googleId = googleId;
+            // Update last login
             user.lastLogin = Date.now();
             await user.save();
         }
 
-        // Create JWT Token for our app
+        // Create JWT Token
         const appToken = jwt.sign(
             { userId: user._id, email: user.email },
             process.env.JWT_SECRET || 'fallback_secret_do_not_use_in_prod',
@@ -55,7 +45,7 @@ router.post('/google', async (req, res) => {
 
     } catch (error) {
         console.error('Auth Error:', error);
-        res.status(401).json({ message: 'Invalid Token' });
+        res.status(500).json({ message: 'Server Error' });
     }
 });
 
