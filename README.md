@@ -19,7 +19,16 @@ FitTrack is a modern, full-stack fitness tracking application designed to help y
 
 Watch the complete application walkthrough showcasing all features:
 
-![FitTrack Demo](./assets/demo.webp)
+https://github.com/user-attachments/assets/your-video-id-here.mp4
+
+> [!NOTE]
+> To add your demo video:
+> 1. Edit this README on GitHub (click the pencil icon)
+> 2. Drag and drop your MP4 video file into the editor
+> 3. GitHub will automatically upload it and generate a URL
+> 4. Replace the URL above with the generated link
+> 
+> Alternatively, you can use an animated GIF for auto-play support.
 
 *Demo includes: Login flow, onboarding experience, dashboard overview, daily tracker, progress tracking, workout plans, and detailed reports.*
 

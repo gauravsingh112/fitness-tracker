@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    gmailLog: {
+        type: Array,
+        default: []
+    },
     lastLogin: {
         type: Date,
         default: Date.now
